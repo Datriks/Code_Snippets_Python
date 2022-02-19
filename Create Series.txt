@@ -1,0 +1,7 @@
+
+series_test = [1,2,3,6,7]
+series_test
+
+
+series_2 = list(range(1,15))
+pd.Series(series_2)

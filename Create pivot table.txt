@@ -1,0 +1,10 @@
+
+df_gp_test = df[["drive-wheels","body-style","price"]]
+df_gp_test
+
+
+grouped_test_1 = df_gp_test.groupby(["drive-wheels","body-style"], as_index = False).mean()
+grouped_test_1
+
+grouped_pivot = grouped_test_1.pivot(index = "drive-wheels", columns="body-style")
+grouped_pivot

@@ -1,0 +1,18 @@
+
+
+
+import os # This will be used to tell us where the file is
+import pandas as pd
+
+pwd = os.getcwd() # This creates a string of the folder this Python Script is stored in
+
+filepath = pwd + "/simple_csv.csv" # This creates a string that is the filepath to the simple_csv file
+
+first_import = pd.read_csv(filepath) # This reads the csv into Python
+first_import
+
+
+pwd = os.getcwd()
+filepath = pwd + "/simple_csv.csv"
+first_import = pd.read_csv(filepath)
+first_import

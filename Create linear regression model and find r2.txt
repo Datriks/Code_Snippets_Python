@@ -1,0 +1,20 @@
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+#split the data
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.10, random_state=1)
+
+# create linear regression object
+lre = LinearRegression()
+
+# create the model
+model_1 = lre.fit(x_train[['horsepower']], y_train)
+
+# find the value of R^2 on test set
+R_score_test_1 = lre.score(x_test[['horsepower']], y_test)
+R_score_test_1
+
+# find value of R^2 on train set
+R_score_train_1 = lre.score(x_train[['horsepower']], y_train)
+R_score_train_1

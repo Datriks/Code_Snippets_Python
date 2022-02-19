@@ -1,0 +1,13 @@
+
+# import the library for cross validation
+from sklearn.model_selection import cross_val_score
+
+# calc cross validation
+Rcross_1 = cross_val_score(lre, x_data[['horsepower']], y_data, cv =4)
+Rcross_1
+
+#print the mean and standard deviation of the folds
+print("The mean of the folds is: ", Rcross_1, "and the standard deviation is :", Rcross_1.std())
+
+# 
+-1 * cross_val_score(lre, x_data[['horsepower']], y_data, cv = 4, scoring = 'neg_mean_squared_error')

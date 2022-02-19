@@ -1,0 +1,8 @@
+
+first_import["New_Column2"] = range(29)
+
+
+first_import["New_Column2"] = 1
+
+first_import["New_Column2"] = range(1,30)
+first_import

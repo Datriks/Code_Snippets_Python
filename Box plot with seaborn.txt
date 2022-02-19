@@ -1,0 +1,3 @@
+
+
+sns.boxplot(x = df["drive-wheels"],  y = df["price"].astype(float))

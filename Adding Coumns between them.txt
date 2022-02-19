@@ -1,0 +1,4 @@
+
+
+first_import["Ading_Stuff"] = first_import["New_Column"]+first_import["Column1"]
+first_import

@@ -1,0 +1,4 @@
+
+
+df = df._get_numeric_data()
+df.head()

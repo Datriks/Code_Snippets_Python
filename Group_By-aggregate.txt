@@ -1,0 +1,12 @@
+
+
+netflix.groupby("country")["show_id"].count().reset_index()
+
+df_final.groupby('Question')['Respondent ID'].nunique().reset_index()
+
+# group by multiple columns
+
+same_answer = df_final.groupby(['Question + Subquestion', 'Answer'])['Respondent ID'].nunique().reset_index()
+
+group_test_2 = df_gp_test[["drive-wheels","price"]].groupby(["drive-wheels"])
+group_test_2.head(2)

@@ -1,0 +1,28 @@
+def DistributionPlot(RedFunction, BlueFunction, RedName, BlueName, Title):
+    width = 15
+    height = 6
+    plt.figure(figsize=(width, height))
+
+    ax1 = sns.distplot(RedFunction, hist = False, color = 'r', label = RedName)
+    ax2 = sns.distplot(BlueFunction, hist = False, color ='b', label = BlueName, ax = ax1)
+
+    plt.title(Title)
+    plt.xlabel('Price in dollars')
+    plt.ylabel('Proportion of cars')
+
+    plt.show()
+    plt.close()
+
+pr_practic = PolynomialFeatures(degree=2)
+
+x_train_practic = pr_practic.fit_transform(x_train[['horsepower', 'curb-weight','engine-size','highway-mpg']])
+x_test_practic = pr_practic.fit_transform(x_test[['horsepower', 'curb-weight','engine-size','highway-mpg']])
+
+x_train_practic.shape
+
+model_practic = LinearRegression().fit(x_train_practic, y_train)
+
+Title = 'Distribution Plot of Predicted values using Test Data vs Data Distribution of Test Data'
+DistributionPlot(y_test, yhat_practic, 'Actual Values (Test)', 'Predicted Values (Test)', Title)
+# y_test = red; yhat_practic = blue - predicted values.
+

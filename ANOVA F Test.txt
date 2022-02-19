@@ -1,0 +1,15 @@
+
+determines if there are significant differences between mean of separate groups
+f-test score:anova asumes that the mean of all groups are the same. calculates how much the mean varies from the asumption value.
+a large number means there are big diferences between the means.
+
+
+group_test_2 = df_gp_test[["drive-wheels","price"]].groupby(["drive-wheels"])
+group_test_2.head(2)
+
+group_test_2.get_group("4wd")["price"]
+
+group_test_2.get_group("fwd")["price"]
+
+f_val, p_val = stats.f_oneway(group_test_2.get_group("fwd")["price"], group_test_2.get_group("rwd")["price"], group_test_2.get_group("4wd")["price"])
+print("ANOVA results: F=", f_val, "P = ", p_val)

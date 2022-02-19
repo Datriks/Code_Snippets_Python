@@ -1,0 +1,6 @@
+
+## find all features that are corelated to price feature in order.
+df1.corr()['price'].sort_values()
+
+
+df1.corr()

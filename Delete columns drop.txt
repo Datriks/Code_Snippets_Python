@@ -1,0 +1,10 @@
+
+
+
+first_import = first_import.drop(columns = "New_Column2")
+
+first_import
+
+first_import.drop(columns = "New_Column", inplace = True)
+
+df1.drop("aspiration", axis = 1, inplace=True)

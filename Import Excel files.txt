@@ -1,0 +1,5 @@
+
+
+pwd = os.getcwd()
+filepath = pwd + "/simple_csv.xlsx"  
+excel_import = pd.read_excel(filepath, sheet_name= "Sheet1")

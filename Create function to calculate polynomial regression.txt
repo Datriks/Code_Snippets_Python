@@ -1,0 +1,38 @@
+def PollyPlot(xtrain, xtest, y_train, y_test, lr, poly_transform):
+    width = 15
+    height = 6
+    plt.figure(figsize=(width, height))
+
+    # training data
+    # testing data
+    # lr: linear regression object
+    # poly_transform : polynimial transformation object
+
+    xmax = max([xtrain.values.max(), xtest.values.max()])
+    xmin = min([xtrain.values.min(), xtest.values.min()])
+
+    x = np.arange(xmin, xmax, 0.1)
+
+    plt.plot(xtrain, y_train, 'ro', label = 'Training Data')
+    plt.plot(xtest, y_test, 'go', label = 'Test Data')
+    plt.plot(x, lr.predict(poly_transform.fit_transform(x.reshape(-1, 1))), label = 'Predicted Function')
+    plt.ylim(-10000, 60000)
+    plt.ylabel('Prce')
+    plt.legend()
+
+def f(order, test_data):
+    x_train3, x_test3, y_train3, y_test3 = train_test_split(x_data, y_data, test_size = test_data, random_state = 0)
+
+    pr = PolynomialFeatures(degree=order)
+
+    x_train_pr3 = pr.fit_transform(x_train3[['horsepower']])
+    x_test_pr3 = pr.fit_transform(x_test3[['horsepower']])
+
+    model_3 = LinearRegression().fit(x_train_pr3, y_train3)
+
+    PollyPlot(x_train3[['horsepower']], x_test3[['horsepower']], y_train3, y_test3, pr)
+
+
+# live interact visual graph
+interact(f, order = (0, 6, 1), test_data=(0.05, 0.95, 0.05))
+

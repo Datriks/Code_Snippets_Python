@@ -1,0 +1,16 @@
+
+
+def DistributionPlot(RedFunction, BlueFunction, RedName, BlueName, Title):
+    width = 15
+    height = 6
+    plt.figure(figsize=(width, height))
+
+    ax1 = sns.distplot(RedFunction, hist = False, colour = 'r', label = RedName)
+    ax2 = sns.distplot(BlueFunction, hist = False, colour ='b', label = BlueName, ax = ax1)
+
+    plt.title(Title)
+    plt.xlabel('Price in dollars')
+    plt.ylabel('Proportion of cars')
+
+    plt.show()
+    plt.close()

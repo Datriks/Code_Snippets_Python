@@ -1,0 +1,19 @@
+
+
+Rsqu_test = []
+
+order = [1,2,3,4]
+for n in order:
+    pr = PolynomialFeatures(degree=n)
+
+    x_train_pr = pr.fit_transform(x_train2[['horsepower']])
+    x_test_pr = pr.fit_transform(x_test2[['horsepower']])
+
+    model_degrees = lr.fit(x_train_pr, y_train2)
+    Rsqu_test.append(model_degrees.score(x_test_pr, y_test2))
+
+plt.plot(order, Rsqu_test)
+plt.xlabel('order')
+plt.ylabel('R^2')
+plt.title('R^2 using test data')
+plt.text(3, 0.75, 'Maximum R^2')

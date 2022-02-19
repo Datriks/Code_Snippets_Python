@@ -1,0 +1,47 @@
+def PollyPlot(xtrain, xtest, y_train, y_test, lr, poly_transform):
+    width = 15
+    height = 6
+    plt.figure(figsize=(width, height))
+
+    # training data
+    # testing data
+    # lr: linear regression object
+    # poly_transform : polynimial transformation object
+
+    xmax = max([xtrain.values.max(), xtest.values.max()])
+    xmin = min([xtrain.values.min(), xtest.values.min()])
+
+    x = np.arange(xmin, xmax, 0.1)
+
+    plt.plot(xtrain, y_train, 'ro', label = 'Training Data')
+    plt.plot(xtest, y_test, 'go', label = 'Test Data')
+    plt.plot(x, lr.predict(poly_transform.fit_transform(x.reshape(-1, 1))), label = 'Predicted Function')
+    plt.ylim(-10000, 60000)
+    plt.ylabel('Prce')
+    plt.legend()
+
+
+from sklearn.preprocessing import PolynomialFeatures
+
+# split the data
+x_train2, x_test2, y_train2, y_test2 = train_test_split(x_data, y_data, test_size =0.45, random_state = 0)
+
+# transform the data to polynomial
+pr = PolynomialFeatures()
+x_train_pr = pr.fit_transform(x_train2[['horsepower']])
+x_test_pr = pr.fit_transform(x_test2[['horsepower']])
+pr
+
+# create model linear
+model_poly = LinearRegression().fit(x_train_pr, y_train2)
+
+# create prediction values
+yhat_poly = model_poly.predict(x_test_pr)
+yhat_poly[0:10]
+
+print real vs predict
+PollyPlot(x_train2[['horsepower']], x_test2[['horsepower']], y_train2, y_test2, model_poly, pr)
+
+# estimate accuracy of the pred model
+R2_poly = model_poly.score(x_test_pr, y_test2)
+R2_poly

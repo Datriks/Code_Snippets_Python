@@ -1,0 +1,7 @@
+
+
+first_import.Column1
+
+first_import["Column1"] 
+# You can use either of these techniques to specify a column in a table. 
+I prefer the second one because it allows your column names to have spaces in them.

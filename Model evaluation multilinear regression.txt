@@ -1,0 +1,46 @@
+
+
+def PollyPlot(xtrain, xtest, y_train, y_test, lr, poly_transform):
+    width = 12
+    height = 10
+    plt.figure(figsize=(width, height))
+
+    # training data
+    # testing data
+    # lr: linear regression object
+    # poly_transform : polynimial transformation object
+
+    xmax = max([xtrain.values.max(), xtest.values.max()])
+    xmin = min([xtrain.values.min(), xtest.values.min()])
+
+    x = np.arange(xmin, xmax, 0.1)
+
+    plt.plot(xtrain, y_train, 'ro', label = 'Training Data')
+    plt.plot(xtest, y_test, 'go', label = 'Test Data')
+    plt.plot(x, lr.predict(poly_transform.fit_transform(x.reshape(-1, 1))), label = 'Predicted Function')
+    plt.ylim(-10000, 60000)
+    plt.ylabel('Prce')
+    plt.legend()
+
+
+from sklearn.model_selection import cross_val_predict
+lre = LinearRegression()
+
+model = lr.fit(x_train[['horsepower','curb-weight', 'engine-size', 'highway-mpg']], y_train)
+
+# train the data
+yhat_train = lr.predict(x_train[['horsepower','curb-weight', 'engine-size', 'highway-mpg']])
+yhat_train[0:5]
+
+# test the data
+yhat_test = lr.predict(x_test[['horsepower','curb-weight', 'engine-size', 'highway-mpg']])
+yhat_test[0:5]
+
+
+# compare train data to predicted train data
+Title = 'Distributin Plot of Predicted Value using Training Data vs Testing Data Distribution'
+DistributionPlot(y_train, yhat_train, 'Actual values (Train)', 'Predicted values (Test)', Title)
+
+# compare test data to pred test data
+Title = 'Distribution Plot of Predicted Value using Test data vs Data distribution of Test data'
+DistributionPlot(y_test, yhat_test, 'Actual values (test)', 'Predicted values (test)', Title)

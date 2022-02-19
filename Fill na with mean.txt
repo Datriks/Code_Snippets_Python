@@ -1,0 +1,5 @@
+
+
+df["price"].fillna(df["price"].mean())
+
+df["price"].fillna(df["price"].mean(), inplace = True)

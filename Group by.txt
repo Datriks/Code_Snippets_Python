@@ -1,0 +1,4 @@
+
+
+grouped_test_1 = df_gp_test.groupby(["drive-wheels","body-style"], as_index = False).mean()
+grouped_test_1

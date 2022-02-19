@@ -1,0 +1,6 @@
+
+
+engine_loc_count = df["engine-location"].value_counts().to_frame()
+engine_loc_count.rename(columns = {"engine-location":"value_counts"}, inplace = True)
+engine_loc_count.index.name = "engine-location"
+engine_loc_count

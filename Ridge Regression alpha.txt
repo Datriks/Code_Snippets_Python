@@ -1,0 +1,54 @@
+Use the polynomial regression
+# split the dataframe:
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size =0.45, random_state = 0)
+
+from sklearn.linear_model import Ridge
+
+pr_ridge = PolynomialFeatures()
+
+x_train_ridge = pr_ridge.fit_transform(x_train[['horsepower', 'curb-weight','engine-size','highway-mpg']])
+x_test_ridge = pr_ridge.fit_transform(x_test[['horsepower', 'curb-weight','engine-size','highway-mpg']])
+
+
+RidgeModel = Ridge(alpha=1)
+# create model
+model_ridge = RidgeModel.fit(x_train_ridge, y_train)
+
+# create prediction values
+yhat_ridge = model_ridge.predict(x_test_ridge)
+
+print('predicted', yhat_ridge[0:4])
+print('test set', y_test[0:4].values)
+---------------------------------------------------------
+# for loop to test all values selected of alpha
+
+from tqdm import tqdm
+
+Rsqu_test = []
+Rsqu_train = []
+dummy1 = []
+Alpha = 10 * np.array(range(0,1000))
+pbar = tqdm(Alpha)
+
+for alpha in pbar:
+    
+    RidgeModel = Ridge(alpha = alpha).fit(x_train_ridge, y_train)
+    
+    test_score, train_score = RidgeModel.score(x_test_ridge, y_test), RidgeModel.score(x_train_ridge, y_train)
+
+    pbar.set_postfix({'Test Score':test_score, 'Train Score': train_score})
+
+    Rsqu_test.append(test_score)
+    Rsqu_train.append(train_score)
+-----------------------------------------------------
+# plot values for R^2 for test and train data
+
+plt.figure(figsize = (15,6))
+
+plt.plot(Alpha, Rsqu_test, label = 'validation data   ')
+plt.plot(Alpha, Rsqu_train, 'r', label = 'training data  ')
+plt.xlabel('alpha')
+plt.ylabel('R^2')
+plt.legend()
+
+---------------------------------------------------------------------------
